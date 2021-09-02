@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const password = process.env['password']
 const db = process.env['db']
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 const bookModel = require('./models/book')
 const bookRouter = require('./routes/book')
@@ -10,7 +11,7 @@ const uri = `mongodb+srv://admin:${password}@cluster0.gpfzo.mongodb.net/${db}?re
 
 mongoose.connect(uri);
 
-app.use(express.json())
+app.use(bodyParser.json())
 
 app.use('/book',bookRouter)
 
